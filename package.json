@@ -1,6 +1,6 @@
 {
   "name": "nextpress",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Next.js boilerplate, headless Wordpress",
   "main": "index.js",
   "dependencies": {
