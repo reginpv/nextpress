@@ -1,13 +1,44 @@
+import React, { Component } from 'react';
+import fetch from 'isomorphic-unfetch';
+
+import BlogList from '../components/BlogList';
 import LayoutDefault from '../layouts/default';
 
 import './style.scss';
 
-export default props => (
-  <LayoutDefault>
-    <div className="page">
+export default class Index extends Component {
 
-      <h1 className="center-align">Welcome to {process.env.SITENAME}</h1>
+  static async getInitialProps() {
+    const menuRes = await fetch(`${process.env.WP_URL}/wp-json/wp/v2/menu`);
+    const menuJson = await menuRes.json();
 
-    </div>
-  </LayoutDefault>
-)
+    const postsRes = await fetch(`${process.env.WP_URL}/wp-json/wp/v2/posts`);
+    const postsJson = await postsRes.json();
+    return { 
+      payload: {
+        menu: menuJson,
+        posts: postsJson
+      }
+    }
+  }
+
+  componentDidMount() {
+    console.log('Props: ', this.props);
+  }
+
+  render() {
+    return (
+      <LayoutDefault
+        menu={this.props.payload.menu}
+      >
+        <div className="page">
+
+          <BlogList
+            posts={this.props.payload.posts}
+          />
+
+        </div>
+      </LayoutDefault>
+    )
+  }
+}

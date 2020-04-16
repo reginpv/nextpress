@@ -13,8 +13,12 @@ import './css/style.scss';
 
 export default props => (
   <section className="layout-default">
-    <Navbar />
+    <Navbar
+      menu={props.menu}
+    />
     {props.children}
-    <Footer className="center-align container" />
+    <Footer 
+      className="center-align container"
+    />
   </section>
 )
