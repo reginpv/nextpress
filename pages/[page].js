@@ -1,11 +1,12 @@
+/**
+ * File: pages/[page].js
+ */
+
 import React, { Component } from 'react';
 import Router, { withRouter } from 'next/router';
 
 import LayoutDefault from '../layouts/default';
 
-/**
- * File: pages/[page].js
- */
 export default withRouter(class Page extends Component {
 
   static async getInitialProps(router) {
@@ -25,7 +26,7 @@ export default withRouter(class Page extends Component {
   }
 
   componentDidMount(){
-    //this.props.payload.page.length == 1 ? `` : Router.push('/error/404');
+    this.props.payload.page.length == 1 ? `` : Router.push('/error/404');
   }
 
   render() {

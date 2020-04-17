@@ -13,11 +13,8 @@ export default props => (
           props.menu.map((item, i)=>(
             <li key={i}>
               {
-                console.log(item.url.replace('http://',''))
-              }
-              {
                 item.type == "post_type" ?
-                  <Link href={item.url.replace(process.env.BASEURL,'')}><a target={item.target}>{item.title}</a></Link> : 
+                  <Link href={item.url.replace(process.env.WP_URL,'')}><a target={item.target}>{item.title}</a></Link> : 
                   <a href={item.url} target={item.target}>{item.title}</a>
               }
             </li>
