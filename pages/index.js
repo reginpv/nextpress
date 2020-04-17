@@ -22,16 +22,12 @@ export default class Index extends Component {
     }
   }
 
-  componentDidMount() {
-    console.log('Props: ', this.props);
-  }
-
   render() {
     return (
       <LayoutDefault
         menu={this.props.payload.menu}
       >
-        <div className="page">
+        <div className="home">
 
           <BlogList
             posts={this.props.payload.posts}

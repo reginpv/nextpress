@@ -1,5 +1,5 @@
 /**
- * Props from WP
+ * File: layouts/default/components/navbar/index.js
  */
 export default props => (
   <nav data-navbar className={`${props.className}`}>
