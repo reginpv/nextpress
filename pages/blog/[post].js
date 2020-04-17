@@ -1,11 +1,12 @@
+/**
+ * File: pages/blog/[post].js
+ */
+
 import React, { Component } from 'react';
 import Router, { withRouter } from 'next/router';
 
 import LayoutDefault from '../../layouts/default';
 
-/**
- * File: pages/blog/[post].js
- */
 export default withRouter(class Page extends Component {
 
   static async getInitialProps(router) {

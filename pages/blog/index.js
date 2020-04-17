@@ -1,10 +1,14 @@
+/**
+ * File: pages/blog/index.js
+ */
+
 import React, { Component } from 'react';
 import fetch from 'isomorphic-unfetch';
 
-import BlogList from '../components/BlogList';
-import LayoutDefault from '../layouts/default';
+import BlogList from '../../components/BlogList';
+import LayoutDefault from '../../layouts/default';
 
-import './style.scss';
+//import './style.scss';
 
 export default class Index extends Component {
 
@@ -22,16 +26,13 @@ export default class Index extends Component {
     }
   }
 
-  componentDidMount() {
-    console.log(this.props)
-  }
-
   render() {
     return (
       <LayoutDefault
         menu={this.props.payload.menu}
       >
-        <div className="home">
+        <div className="blog">
+          blog
 
           <BlogList
             posts={this.props.payload.posts}
