@@ -21,19 +21,14 @@ export default class Index extends Component {
     return { 
       payload: {
         menu: menuJson,
-        posts: postsJson
+        posts: postsJson,
       }
     }
-  }
-
-  componentDidMount() {
-    console.log(this.props)
   }
 
   render() {
     return (
       <LayoutDefault
-        meta={this.props.meta}
         menu={this.props.payload.menu}
       >
         <div className="home">

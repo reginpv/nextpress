@@ -18,6 +18,10 @@ export default withRouter(class Page extends Component {
 
     return { 
       payload: {
+        meta: {
+          title: pageJson[0].title.rendered,
+          description: pageJson[0].excerpt.rendered
+        },
         menu: menuJson,
         page: pageJson
       }
@@ -32,6 +36,7 @@ export default withRouter(class Page extends Component {
   render() {
     return (
       <LayoutDefault
+        meta={this.props.payload.meta}
         menu={this.props.payload.menu}
       >
         <div className="page">

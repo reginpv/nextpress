@@ -18,6 +18,10 @@ export default class Index extends Component {
     const postsJson = await postsRes.json();
     return { 
       payload: {
+        meta: {
+          title: `Blog - ${process.env.SITENAME}`,
+          description: `Welcome to our blog - ${process.env.SITENAME}`
+        },
         posts: postsJson
       }
     }
@@ -26,9 +30,9 @@ export default class Index extends Component {
   render() {
     return (
       <LayoutDefault
+        meta={this.props.payload.meta}
       >
         <div className="blog">
-          blog
 
           <BlogList
             posts={this.props.payload.posts}
