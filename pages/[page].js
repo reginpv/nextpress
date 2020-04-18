@@ -19,8 +19,8 @@ export default withRouter(class Page extends Component {
     return { 
       payload: {
         meta: {
-          title: pageJson[0].title.rendered,
-          description: pageJson[0].excerpt.rendered
+          title: pageJson[0] ? pageJson[0].title.rendered : null,
+          description: pageJson[0] ? pageJson[0].excerpt.rendered : null
         },
         menu: menuJson,
         page: pageJson

@@ -19,8 +19,8 @@ export default withRouter(class Page extends Component {
     return { 
       payload: {
         meta: {
-          title: postJson[0].title.rendered,
-          description: postJson[0].excerpt.rendered
+          title: postJson[0] ? postJson[0].title.rendered : null,
+          description: postJson[0] ? postJson[0].excerpt.rendered : null
         },
         menu: menuJson,
         post: postJson
@@ -30,7 +30,7 @@ export default withRouter(class Page extends Component {
   }
 
   componentDidMount(){
-    //this.props.payload.page.length == 1 ? `` : Router.push('/error/404');
+    this.props.payload.post.length == 1 ? `` : Router.push('/error/404');
   }
 
   render() {
