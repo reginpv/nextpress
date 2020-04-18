@@ -1,20 +1,17 @@
+/**
+ * File: layouts/default/index.js
+ */
+
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
-/**
- * Materialize css
- */
 import 'materialize-css/dist/css/materialize.min.css';
-
-/**
- * Template specific style
- */
 import './css/style.scss';
 
 export default props => (
   <section className="layout-default">
     <Navbar
-      menu={props.menu}
+      menu={props.menu || []}
     />
     {props.children}
     <Footer 

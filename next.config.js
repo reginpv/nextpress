@@ -14,6 +14,7 @@ module.exports = withCSS(withSass({
   //cssModules: true
   env: {
     SITENAME: process.env.SITENAME,
+    DESCRIPTION: process.env.DESCRIPTION,
     BASEURL: process.env.BASEURL,
     WP_URL: process.env.WP_URL,
     WP_BLOG_SLUG: process.env.WP_BLOG_SLUG

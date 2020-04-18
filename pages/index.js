@@ -1,3 +1,7 @@
+/**
+ * File: pages/index.js
+ */
+
 import React, { Component } from 'react';
 import fetch from 'isomorphic-unfetch';
 
@@ -29,14 +33,13 @@ export default class Index extends Component {
   render() {
     return (
       <LayoutDefault
+        meta={this.props.meta}
         menu={this.props.payload.menu}
       >
         <div className="home">
-
           <BlogList
             posts={this.props.payload.posts}
           />
-
         </div>
       </LayoutDefault>
     )
