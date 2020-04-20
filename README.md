@@ -2,11 +2,13 @@
 
 Headless Wordpress, Next.js (React.js) boilerplate
 
+Demo: `https://nextpressboilerplate.com`
+
 ### Intallation:
 
 Must have a standalone Wordpress installation already.
 
-- Git clone.
+- Run `git clone https://github.com/reginpv/nextpress.git .`.
 - Run `npm i`.
 - Run `npm run dev`.
 
