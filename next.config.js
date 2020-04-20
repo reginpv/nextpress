@@ -18,5 +18,6 @@ module.exports = withCSS(withSass({
     BASEURL: process.env.BASEURL,
     WP_URL: process.env.WP_URL,
     WP_BLOG_SLUG: process.env.WP_BLOG_SLUG
-  }
+  },
+  target: 'serverless'
 }));
