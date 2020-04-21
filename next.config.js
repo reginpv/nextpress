@@ -10,6 +10,7 @@ const withSass = require('@zeit/next-sass');
 const withCSS = require("@zeit/next-css");
 
 module.exports = withCSS(withSass({
+  distDir: '_next',
   env: {
     SITENAME: process.env.SITENAME,
     DESCRIPTION: process.env.DESCRIPTION,

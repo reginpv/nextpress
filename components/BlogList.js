@@ -8,7 +8,7 @@ export default props => (
           <div key={i} className="blog-list__item">
             <h2>
               <Link href={`${process.env.WP_BLOG_SLUG}/${post.slug}`}>
-                <a>{post.title.rendered}</a>
+                <a dangerouslySetInnerHTML={{__html: post.title.rendered}} />
               </Link>
             </h2>
             <div dangerouslySetInnerHTML={{__html: post.excerpt.rendered}} />

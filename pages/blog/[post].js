@@ -46,7 +46,7 @@ export default class Page extends Component {
         {
           this.props.payload.post.map((p,i)=>(
             <div key={i} className="page__content container">
-              <h1>{p.title.rendered}</h1>
+              <h1 dangerouslySetInnerHTML={{__html: p.title.rendered}} />
               <div dangerouslySetInnerHTML={{__html: p.content.rendered}} />
             </div>
           ))
