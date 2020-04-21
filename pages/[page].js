@@ -3,18 +3,21 @@
  */
 
 import React, { Component } from 'react';
-import Router, { withRouter } from 'next/router';
-
+import Router from 'next/router';
+import fetch from 'isomorphic-unfetch';
 import LayoutDefault from '../layouts/default';
 
-export default withRouter(class Page extends Component {
+export default class Page extends Component {
 
-  static async getInitialProps(router) {
+  static async getInitialProps( { query } ) {
+
+    const { page } = query;
+    
     const menuRes = await fetch(`${process.env.WP_URL}/wp-json/wp/v2/menu`);
     const menuJson = await menuRes.json();
 
-    const pageRes = await fetch(`${process.env.WP_URL}/wp-json/wp/v2/pages/?slug=${router.query.page}`);
-    const pageJson = await pageRes.json();
+    const pageRes = await fetch(`${process.env.WP_URL}/wp-json/wp/v2/pages/?slug=${page}`);
+    const pageJson = await pageRes.json(); 
 
     return { 
       payload: {
@@ -52,4 +55,4 @@ export default withRouter(class Page extends Component {
       </LayoutDefault>
     )
   }
-});
+};

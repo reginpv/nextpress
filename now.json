@@ -1,13 +1,3 @@
 {
-  "version": 2,
-  "routes": [
-    {
-      "src": "/[page].js",
-      "dest": "/:page"
-    },
-    {
-      "src": "/blog/[post].js",
-      "dest": "/blog/:post"
-    }
-  ]
+  "version": 2
 }
