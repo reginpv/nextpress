@@ -3,17 +3,20 @@
  */
 
 import React, { Component } from 'react';
-import Router, { withRouter } from 'next/router';
-
+import Router from 'next/router';
+import fetch from 'isomorphic-unfetch';
 import LayoutDefault from '../../layouts/default';
 
-export default withRouter(class Page extends Component {
+export default class Page extends Component {
 
-  static async getInitialProps(router) {
+  static async getInitialProps( { query } ) {
+
+    const { post } = query;
+
     const menuRes = await fetch(`${process.env.WP_URL}/wp-json/wp/v2/menu`);
     const menuJson = await menuRes.json();
 
-    const postRes = await fetch(`${process.env.WP_URL}/wp-json/wp/v2/posts/?slug=${router.query.post}`);
+    const postRes = await fetch(`${process.env.WP_URL}/wp-json/wp/v2/posts/?slug=${post}`);
     const postJson = await postRes.json();
 
     return { 
@@ -43,7 +46,7 @@ export default withRouter(class Page extends Component {
         {
           this.props.payload.post.map((p,i)=>(
             <div key={i} className="page__content container">
-              <h1>{p.title.rendered}</h1>
+              <h1 dangerouslySetInnerHTML={{__html: p.title.rendered}} />
               <div dangerouslySetInnerHTML={{__html: p.content.rendered}} />
             </div>
           ))
@@ -52,4 +55,4 @@ export default withRouter(class Page extends Component {
       </LayoutDefault>
     )
   }
-});
+};
