@@ -3,22 +3,23 @@
  */
 
 import React, { Component } from 'react';
-import Router from 'next/router';
 import fetch from 'isomorphic-unfetch';
+import Router, { withRouter } from 'next/router';
 import LayoutDefault from '../../layouts/default';
 
-export default class Page extends Component {
-
-  componentDidMount(){
-    this.props.payload.post.length == 1 ? `` : Router.push('/error/404');
-  }
+export default withRouter(class Page extends Component {
 
   render() {
+
+    if (this.props.router.isFallback) {
+      return <div>Loading...</div>
+    }
+
     return (
       <LayoutDefault
         meta={this.props.payload.meta}
         menu={this.props.payload.menu}
-      >
+      > 
         <div className="page">
         {
           this.props.payload.post.map((p,i)=>(
@@ -32,7 +33,7 @@ export default class Page extends Component {
       </LayoutDefault>
     )
   }
-};
+})
 
 export async function getStaticPaths() {
 
@@ -47,7 +48,7 @@ export async function getStaticPaths() {
 
   return { 
     paths, 
-    fallback: false
+    fallback: true
   }
 }
 

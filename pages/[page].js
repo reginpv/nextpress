@@ -3,17 +3,18 @@
  */
 
 import React, { Component } from 'react';
-import Router from 'next/router';
+import Router, { withRouter } from 'next/router';
 import fetch from 'isomorphic-unfetch';
 import LayoutDefault from '../layouts/default';
 
-export default class Page extends Component {
-
-  componentDidMount(){
-    this.props.payload.page.length == 1 ? `` : Router.push('/error/404');
-  }
+export default withRouter(class Page extends Component {
 
   render() {
+
+    if (this.props.router.isFallback) {
+      return <div>Loading...</div>
+    }
+
     return (
       <LayoutDefault
         meta={this.props.payload.meta}
@@ -32,7 +33,7 @@ export default class Page extends Component {
       </LayoutDefault>
     )
   }
-};
+});
 
 export async function getStaticPaths() {
 
