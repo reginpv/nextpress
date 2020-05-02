@@ -12,20 +12,6 @@ import './style.scss';
 
 export default class Index extends Component {
 
-  static async getInitialProps() {
-    const menuRes = await fetch(`${process.env.WP_URL}/wp-json/wp/v2/menu`);
-    const menuJson = await menuRes.json();
-
-    const postsRes = await fetch(`${process.env.WP_URL}/wp-json/wp/v2/posts`);
-    const postsJson = await postsRes.json();
-    return { 
-      payload: {
-        menu: menuJson,
-        posts: postsJson,
-      }
-    }
-  }
-
   render() {
     return (
       <LayoutDefault
@@ -38,5 +24,23 @@ export default class Index extends Component {
         </div>
       </LayoutDefault>
     )
+  }
+}
+
+export async function getStaticProps () {
+
+  const menuRes = await fetch(`${process.env.WP_URL}/wp-json/wp/v2/menu`);
+  const menuJson = await menuRes.json();
+
+  const postsRes = await fetch(`${process.env.WP_URL}/wp-json/wp/v2/posts`);
+  const postsJson = await postsRes.json();
+
+  return { 
+    props: {
+      payload: {
+        menu: menuJson,
+        posts: postsJson,
+      }
+    }
   }
 }

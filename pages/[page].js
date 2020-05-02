@@ -9,29 +9,6 @@ import LayoutDefault from '../layouts/default';
 
 export default class Page extends Component {
 
-  static async getInitialProps( { query } ) {
-
-    const { page } = query;
-    
-    const menuRes = await fetch(`${process.env.WP_URL}/wp-json/wp/v2/menu`);
-    const menuJson = await menuRes.json();
-
-    const pageRes = await fetch(`${process.env.WP_URL}/wp-json/wp/v2/pages/?slug=${page}`);
-    const pageJson = await pageRes.json(); 
-
-    return { 
-      payload: {
-        meta: {
-          title: pageJson[0] ? pageJson[0].title.rendered : null,
-          description: pageJson[0] ? pageJson[0].excerpt.rendered : null
-        },
-        menu: menuJson,
-        page: pageJson
-      }
-    }
-
-  }
-
   componentDidMount(){
     this.props.payload.page.length == 1 ? `` : Router.push('/error/404');
   }
@@ -56,3 +33,42 @@ export default class Page extends Component {
     )
   }
 };
+
+export async function getStaticPaths() {
+
+  const pageRes = await fetch(`${process.env.WP_URL}/wp-json/wp/v2/pages?per_page=20`);
+  const pageJson = await pageRes.json(); 
+
+  const paths = pageJson.map(page => ({
+    params: { 
+      page: page.slug 
+    },
+  }))
+
+  return { 
+    paths, 
+    fallback: false
+  }
+}
+
+export async function getStaticProps({ params }) {
+    
+  const menuRes = await fetch(`${process.env.WP_URL}/wp-json/wp/v2/menu`);
+  const menuJson = await menuRes.json();
+
+  const pageRes = await fetch(`${process.env.WP_URL}/wp-json/wp/v2/pages/?slug=${params.page}`);
+  const pageJson = await pageRes.json(); 
+
+  return { 
+    props: {
+      payload: {
+        meta: {
+          title: pageJson[0] ? pageJson[0].title.rendered : null,
+          description: pageJson[0] ? pageJson[0].excerpt.rendered : null
+        },
+        menu: menuJson,
+        page: pageJson
+      }
+    }
+  }
+}
