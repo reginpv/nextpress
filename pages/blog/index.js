@@ -29,7 +29,7 @@ export default class Index extends Component {
   }
 }
 
-export async function getStaticProps () {
+export async function getServerSideProps () {
 
   const postsRes = await fetch(`${process.env.WP_URL}/wp-json/wp/v2/posts`);
   const postsJson = await postsRes.json();

@@ -27,7 +27,7 @@ export default class Index extends Component {
   }
 }
 
-export async function getStaticProps () {
+export async function getServerSideProps () {
 
   const menuRes = await fetch(`${process.env.WP_URL}/wp-json/wp/v2/menu`);
   const menuJson = await menuRes.json();
